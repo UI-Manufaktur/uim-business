@@ -5,5 +5,18 @@
 	"copyright": "Copyright © 2019, uim",
 	"description": "A minimal D application.",
 	"license": "proprietary",
-	"name": "uim-business"
+	"name": "uim-business",
+	"targetName": "uim-business",
+  "targetType": "library",
+	"dependencies": {
+	"vibe-d": "~>0.8.6"	
+	},
+	"sourcePaths": [
+		"../uim-core",
+		"./"
+	],
+	"importPaths": [
+		"../uim-core",
+		"./"
+	]	
 }
