@@ -22,10 +22,8 @@ owningUser	Unique identifier of the user that owns the activity.
 owningTeam	Unique identifier for the team that owns the record.	
 timeZoneRuleVersionNumber	For internal use only.	
 UTCConversionTimeZoneCode	Time zone code that was in use when the record was created.	
-versionNumber	Version Number	
 salesOrderId	Unique identifier of the order.	
-emailAddress	The primary email address for the entity.	
-name	Type a descriptive name for the order.	
+emailAddress	The primary email address for the entity.			
 processId	Contains the id of the process associated with the entity.	
 stageId	Contains the id of the stage where the entity is located.	
 traversedPath	A comma separated list of string values representing the unique identifiers of stages in a Business Process Flow Instance in the order that they occur.	

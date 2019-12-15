@@ -3,17 +3,77 @@ module uim.business.sales.invoice;
 import uim.business;
 
 /// Order that has been billed.
-class DBUSInvoice : DBUSObject {
+@safe class DBUSInvoice : DBUSObject {
+  this() { super(); }
+  this(UUID newId, string newName) { super(newId, newName); }
+
+  /// The primary email address for the entity.
+  mixin(OString!"emailAddress");	
+
+  /// Contains the id of the process associated with the entity.	
+  mixin(OUuid!"processId");
+
+  /// Contains the id of the stage where the entity is located.
+  mixin(OUuid!"stageId");
 
 }
 auto BUSInvoice() { return new DBUSInvoice; }
+auto BUSInvoice(UUID newId, string newName) { return new DBUSInvoice(newId, newName); }
 unittest {
   // writeln();
 }
 
-/*
-Name	Description	First Included in Instance
+@path("/api/demo/")
+interface IBUSInvoices {
+  mixin(IEntitiesFragment!("invoice", "invoices"));
+}
 
+@safe class DBUSInvoices : IBUSInvoices {
+  this() {
+    _entities ~= new DBUSInvoice(randomUUID, "hallo");
+    _entities ~= new DBUSInvoice(randomUUID, "world");
+  }
+
+  DBUSInvoice[] _entities;
+
+  DBUSInvoice[] all() { 
+    DBUSInvoice[] results;  
+    foreach(entity; _entities) results ~= cast(DBUSInvoice)entity;
+    return results;
+  }
+  size_t count() { 
+    return _entities.length;
+  }
+  DBUSInvoice get(string _id) { 
+    DBUSInvoice result;
+
+    result = cast(DBUSInvoice)_entities[0];
+
+    return cast(DBUSInvoice)result;
+  }
+
+  DBUSInvoice[] versions(string _id) { 
+    DBUSInvoice[] results;
+  
+    foreach(entity; _entities) results ~= cast(DBUSInvoice)entity;
+
+    return results;
+  }
+
+  bool exists(string _id) {
+    return true;
+  }
+
+	DBUSInvoice create(DBUSInvoice entity) {
+    _entities ~= entity;
+    return cast(DBUSInvoice)entity;
+  }
+
+	DBUSInvoice update(DBUSInvoice entity) {
+   return cast(DBUSInvoice)entity; 
+  }
+}
+/*
 createdOnBehalfBy	Unique identifier of the delegate user who created the record.	
 modifiedOnBehalfBy	Unique identifier of the delegate user who modified the record.	
 overriddenCreatedOn	Date and time that the record was migrated.	
@@ -25,12 +85,6 @@ owningUser	Unique identifier of the user that owns the activity.
 owningTeam	Unique identifier for the team that owns the record.	
 timeZoneRuleVersionNumber	For internal use only.	
 UTCConversionTimeZoneCode	Time zone code that was in use when the record was created.	
-versionNumber	Version Number	
-
-emailAddress	The primary email address for the entity.	
-name	Type a descriptive name for the invoice.	
-processId	Contains the id of the process associated with the entity.	
-stageId	Contains the id of the stage where the entity is located.	
 traversedPath	A comma separated list of string values representing the unique identifiers of stages in a Business Process Flow Instance in the order that they occur.	
 billToCity	Type the city for the customer's billing address.	
 billToComposite	Shows the complete Bill To address.	
