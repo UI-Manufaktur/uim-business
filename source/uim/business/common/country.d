@@ -12,55 +12,14 @@ unittest {
   // writeln();
 }
 
-@path("/api/demo/")
+@path(restPath)
 interface IBUSCountries {
-  mixin(IEntitiesFragment!("country", "countries"));
+  mixin(IEIEntitiesRest!("Country", "Countries"));
 }
 
 @safe class DBUSCountries : IBUSCountries {
-  this() {
-    _entities ~= new DBUSCountry(randomUUID, "hallo");
-    _entities ~= new DBUSCountry(randomUUID, "world");
-  }
-
-  DBUSCountry[] _entities;
-
-  DBUSCountry[] all() { 
-    DBUSCountry[] results;  
-    foreach(entity; _entities) results ~= entity;
-    return results;
-  }
-  size_t count() { 
-    return _entities.length;
-  }
-  DBUSCountry get(string _id) { 
-    DBUSCountry result;
-
-    result = _entities[0];
-
-    return result;
-  }
-
-  DBUSCountry[] versions(string _id) { 
-    DBUSCountry[] results;
-  
-    foreach(entity; _entities) results ~= entity;
-
-    return results;
-  }
-
-  bool exists(string _id) {
-    return true;
-  }
-
-	DBUSCountry create(DBUSCountry entity) {
-    _entities ~= entity;
-    return entity;
-  }
-
-	DBUSCountry update(DBUSCountry entity) {
-   return entity; 
-  }
+  mixin(OEntitiesInner!("Country", "Countries"));
+  mixin(OEntitiesRest!("Country", "Countries"));
 }
 /*
 

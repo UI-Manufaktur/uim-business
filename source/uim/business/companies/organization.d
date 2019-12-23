@@ -1,4 +1,27 @@
 module uim.business.companies.organization;
+
+import uim.business;
+
+@safe class DBUSOrganization : DBUSObject {
+  this() { super(); }
+  this(UUID newId, string newName) { super(newId, newName); }
+}
+auto BUSOrganization() { return new DBUSOrganization; }
+auto BUSOrganization(UUID newId, string newName) { return new DBUSOrganization(newId, newName); }
+unittest {
+  // writeln();
+}
+
+@path(restPath)
+interface IBUSOrganizations {
+  mixin(IEIEntitiesRest!("Organization", "Organizations"));
+}
+
+@safe class DBUSOrganizations : IBUSOrganizations {
+  mixin(OEntitiesInner!("Organization", "Organizations"));
+  mixin(OEntitiesRest!("Organization", "Organizations"));
+}
+
 /*
 Attributes
 Name	Description	First Included in Instance
@@ -35,9 +58,9 @@ quotePrefix	Prefix to use for all quotes throughout Microsoft Dynamics 365.	appl
 currentQuoteNumber	First quote number to use. Deprecated. Use SetAutoNumberSeed message.	applicationCommon/Organization
 orderPrefix	Prefix to use for all orders throughout Microsoft Dynamics 365.	applicationCommon/Organization
 currentOrderNumber	First order number to use. Deprecated. Use SetAutoNumberSeed message.	applicationCommon/Organization
-invoicePrefix	Prefix to use for all invoice numbers throughout Microsoft Dynamics 365.	applicationCommon/Organization
-currentInvoiceNumber	First invoice number to use. Deprecated. Use SetAutoNumberSeed message.	applicationCommon/Organization
-uniqueSpecifierLength	Number of characters appended to invoice, quote, and order numbers.	applicationCommon/Organization
+organizationPrefix	Prefix to use for all organization numbers throughout Microsoft Dynamics 365.	applicationCommon/Organization
+currentOrganizationNumber	First organization number to use. Deprecated. Use SetAutoNumberSeed message.	applicationCommon/Organization
+uniqueSpecifierLength	Number of characters appended to organization, quote, and order numbers.	applicationCommon/Organization
 createdOn	Date and time when the organization was created.	applicationCommon/Organization
 modifiedOn	Date and time when the organization was last modified.	applicationCommon/Organization
 fiscalYearFormat	Information that specifies how the name of the fiscal year is displayed throughout Microsoft CRM.	applicationCommon/Organization
@@ -221,7 +244,7 @@ socialInsightsInstance	Identifier for the Social Insights instance for the organ
 disableSocialCare	Indicates whether Social Care is disabled.	applicationCommon/Organization
 maxProductsInBundle	Restrict the maximum no of items in a bundle	applicationCommon/Organization
 useInbuiltRuleForDefaultPricelistSelection	Flag indicates whether to Use Inbuilt Rule For DefaultPricelist.	applicationCommon/Organization
-OOBPriceCalculationEnabled	Enable OOB pricing calculation logic for Opportunity, Quote, Order and Invoice entities.	applicationCommon/Organization
+OOBPriceCalculationEnabled	Enable OOB pricing calculation logic for Opportunity, Quote, Order and Organization entities.	applicationCommon/Organization
 isHierarchicalSecurityModelEnabled	Enable Hierarchical Security Model	applicationCommon/Organization
 maximumDynamicPropertiesAllowed	Restrict the maximum number of product properties for a product family/bundle	applicationCommon/Organization
 usePositionHierarchy	Use position hierarchy	applicationCommon/Organization

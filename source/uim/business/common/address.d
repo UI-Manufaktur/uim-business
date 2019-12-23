@@ -12,67 +12,25 @@ unittest {
   // writeln();
 }
 
-@path("/api/demo/")
+@path(restPath)
 interface IBUSAddresses {
-  mixin(IEntitiesFragment!("address", "addresses"));
+  mixin(IEIEntitiesRest!("Address", "Addresses"));
 }
 
 @safe class DBUSAddresses : IBUSAddresses {
-  this() {
-    _entities ~= new DBUSAddress(randomUUID, "hallo");
-    _entities ~= new DBUSAddress(randomUUID, "world");
-  }
-
-  DBUSAddress[] _entities;
-
-  DBUSAddress[] all() { 
-    DBUSAddress[] results;  
-    foreach(entity; _entities) results ~= entity;
-    return results;
-  }
-  size_t count() { 
-    return _entities.length;
-  }
-  DBUSAddress get(string _id) { 
-    DBUSAddress result;
-
-    result = _entities[0];
-
-    return result;
-  }
-
-  DBUSAddress[] versions(string _id) { 
-    DBUSAddress[] results;
-  
-    foreach(entity; _entities) results ~= entity;
-
-    return results;
-  }
-
-  bool exists(string _id) {
-    return true;
-  }
-
-	DBUSAddress create(DBUSAddress entity) {
-    _entities ~= entity;
-    return entity;
-  }
-
-	DBUSAddress update(DBUSAddress entity) {
-   return entity; 
-  }
-}
+  mixin(OEntitiesInner!("Address", "Addresses"));
+  mixin(OEntitiesRest!("Address", "Addresses"));}
 /*
 Attributes
 Name	Description	First Included in Instance
 parentIdTypeCode		applicationCommon/Address
 parentId		applicationCommon/Address
 customerAddressId		applicationCommon/Address
-addressNumber		applicationCommon/Address
+AddressNumber		applicationCommon/Address
 objectTypeCode		applicationCommon/Address
 objectTypeCode_display		applicationCommon/Address
-addressTypeCode		applicationCommon/Address
-addressTypeCode_display		applicationCommon/Address
+AddressTypeCode		applicationCommon/Address
+AddressTypeCode_display		applicationCommon/Address
 name		applicationCommon/Address
 primaryContactName		applicationCommon/Address
 line1		applicationCommon/Address

@@ -5,13 +5,16 @@ import uim.business;
 @safe class DBUSObject {
   this() {}
   this(UUID newId, string newName) { this(); id = newId; name = newName; }
+  this(DBUSStore newStore, UUID newId, string newName) { this(); _store = newStore; id = newId; name = newName; }
+
+  DBUSStore _store;
 
   /// Unique identifier
   mixin(OUuid!"id");
   /// A unique descriptive name
   mixin(OString!"name");
   /// A title
-  mixin(OString!"title");
+  mixin(OLanguageString!"title");
   /// Date and time when the entity was created.
   mixin(OTimestamp!"createdOn");
   ///   createdBy	Unique identifier of the user who created the entity.	
@@ -28,13 +31,19 @@ import uim.business;
   mixin(OTimestamp!"deletedOn");
   ///	Unique identifier of the user who deleted the entity.
   mixin(OUuid!"deletedBy");
-  mixin(OString!"description");
+  /// Additional Info 
+  mixin(OLanguageString!"description");
 
   /// Versioning
+  /// Current version id / unique increment
   mixin(OCounter!"versionId");
+  /// is current Version ?
   mixin(OBool!"currentVersion");
+  /// timestamp of version creation
   mixin(OTimestamp!"versionOn");
+  /// version created by
   mixin(OUuid!"versionBy");
+  /// additional version info
   mixin(OString!"versionNote");
 
 }
@@ -45,9 +54,9 @@ unittest {
   assert(obj.name == "test");
 }
 
-@path("/api/demo/")
+@path(restPath)
 interface IBUSObjects {
-  mixin(IEntitiesFragment!("object", "objects"));
+  mixin(IEIEntitiesRest!("Object", "Objects"));
 }
 @safe class DBUSObjects : IBUSObjects{
   this() {
@@ -78,9 +87,8 @@ interface IBUSObjects {
     return true;
   }
 
-	DBUSObject create(DBUSObject entity) {
-    _entities ~= entity;
-    return entity;
+	DBUSObject create() {
+    return null;
   }
 
 	DBUSObject update(DBUSObject entity) {

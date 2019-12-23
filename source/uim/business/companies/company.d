@@ -12,55 +12,15 @@ unittest {
   // writeln();
 }
 
-@path("/api/demo/")
+
+@path(restPath)
 interface IBUSCompanies {
-  mixin(IEntitiesFragment!("company", "companies"));
+  mixin(IEIEntitiesRest!("Company", "Companies"));
 }
 
 @safe class DBUSCompanies : IBUSCompanies {
-  this() {
-    _entities ~= new DBUSCompany(randomUUID, "hallo");
-    _entities ~= new DBUSCompany(randomUUID, "world");
-  }
-
-  DBUSCompany[] _entities;
-
-  DBUSCompany[] all() { 
-    DBUSCompany[] results;  
-    foreach(entity; _entities) results ~= entity;
-    return results;
-  }
-  size_t count() { 
-    return _entities.length;
-  }
-  DBUSCompany get(string _id) { 
-    DBUSCompany result;
-
-    result = _entities[0];
-
-    return result;
-  }
-
-  DBUSCompany[] versions(string _id) { 
-    DBUSCompany[] results;
-  
-    foreach(entity; _entities) results ~= entity;
-
-    return results;
-  }
-
-  bool exists(string _id) {
-    return true;
-  }
-
-	DBUSCompany create(DBUSCompany entity) {
-    _entities ~= entity;
-    return entity;
-  }
-
-	DBUSCompany update(DBUSCompany entity) {
-   return entity; 
-  }
+  mixin(OEntitiesInner!("Company", "Companies"));
+  mixin(OEntitiesRest!("Company", "Companies"));
 }
 /*
 Attributes

@@ -20,6 +20,15 @@ template OString(string name) {
     `;
 } 
 
+/// mixin for language string properties
+template OLanguageString(string name) {
+    const char[] OLanguageString = `
+    protected string[string] _`~name~`; 
+    @safe @property string[string] `~name~`() { return _`~name~`; }; 
+    @safe @property void `~name~`(string[string] new`~name~`) { _`~name~` = new`~name~`; };     
+    `;
+} 
+
 /// mixin for uuid properties
 template OUuid(string name) {
     const char[] OUuid = `
@@ -34,6 +43,24 @@ template OUuidArray(string name) {
     protected UUID[] _`~name~`; 
     @safe @property UUID[] `~name~`() { return _`~name~`; }; 
     @safe @property void `~name~`(UUID[] new`~name~`) { _`~name~` = new`~name~`; };     
+    `;
+} 
+
+/// mixin for object id properties
+template OObjectId(string name) {
+    const char[] OObjectId = `
+    protected string[UUID] _`~name~`; 
+    @safe @property string[UUID] `~name~`() { return _`~name~`; }; 
+    @safe @property void `~name~`(string[UUID] new`~name~`) { _`~name~` = new`~name~`; };     
+    `;
+} 
+
+/// mixin for object Ids properties - etag[UUID]
+template OObjectIds(string name) {
+    const char[] OObjectIds = `
+    protected string[UUID] _`~name~`; 
+    @safe @property string[UUID] `~name~`() { return _`~name~`; }; 
+    @safe @property void `~name~`(string[UUID] new`~name~`) { _`~name~` = new`~name~`; };     
     `;
 } 
 

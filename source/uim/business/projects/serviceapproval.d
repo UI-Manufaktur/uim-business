@@ -1,0 +1,109 @@
+module uim.business.projectserviceapprovals.serviceapproval;
+
+import uim.business;
+
+@safe class DBUSProjectServiceApproval : DBUSObject {
+  this() { super(); }
+  this(UUID newId, string newName) { super(newId, newName); }
+}
+auto BUSProjectServiceApproval() { return new DBUSProjectServiceApproval; }
+auto BUSProjectServiceApproval(UUID newId, string newName) { return new DBUSProjectServiceApproval(newId, newName); }
+unittest {
+  // writeln();
+}
+
+@path(restPath)
+interface IBUSProjectServiceApprovals {
+  mixin(IEIEntitiesRest!("ProjectServiceApproval", "ProjectServiceApprovals"));
+}
+
+@safe class DBUSProjectServiceApprovals : IBUSProjectServiceApprovals {
+  mixin(OEntitiesInner!("ProjectServiceApproval", "ProjectServiceApprovals"));
+  mixin(OEntitiesRest!("ProjectServiceApproval", "ProjectServiceApprovals"));
+}
+
+/*
+
+Attributes
+Name	Description	First Included in Instance
+createdOn	Date and time when the record was created.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+createdBy	Unique identifier of the user who created the record.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+modifiedOn	Date and time when the record was modified.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+modifiedBy	Unique identifier of the user who modified the record.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+createdOnBehalfBy	Unique identifier of the delegate user who created the record.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+modifiedOnBehalfBy	Unique identifier of the delegate user who modified the record.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+overriddenCreatedOn	Date and time that the record was migrated.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+importSequenceNumber	Unique identifier of the data import or data migration that created this record.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+ownerIdType	The type of owner, either User or Team.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+ownerId	Owner Id	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+owningBusinessUnit	Unique identifier for the business unit that owns the record	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+owningUser	Unique identifier of the user that owns the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+owningTeam	Unique identifier for the team that owns the record.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+timeZoneRuleVersionNumber	For internal use only.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+UTCConversionTimeZoneCode	Time zone code that was in use when the record was created.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+versionNumber	Version Number	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+actualEnd	Actual end time of the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+activityId	Unique identifier of the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+isBilled	Information regarding whether the activity was billed as part of resolving a case.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+description	Description of the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+activityTypeCode	Type of activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+activityTypeCode_display		projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+stateCode	Status of the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+stateCode_display		projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+scheduledEnd	Scheduled end time of the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+scheduledDurationMinutes	Scheduled duration of the activity, specified in minutes.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+actualDurationMinutes	Actual duration of the activity in minutes.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+statusCode	Reason for the status of the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+statusCode_display		projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+actualStart	Actual start time of the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+priorityCode	Priority of the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+priorityCode_display		projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+regardingObjectIdType		projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+regardingObjectId	Unique identifier of the object with which the activity is associated.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+subject	Subject associated with the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+isWorkflowCreated	Information regarding whether the activity was created from a workflow rule.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+scheduledStart	Scheduled start time of the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+instanceTypeCode	Type of instance of a recurring series.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+instanceTypeCode_display		projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+seriesId	Shows the ID of the recurring series of an instance.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+isRegularActivity	Information regarding whether the activity is a regular activity type or event type.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+transactionCurrencyId	Unique identifier of the currency associated with the activitypointer.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+exchangeRate	Exchange rate for the currency associated with the activitypointer with respect to the base currency.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+leftVoiceMail	Left the voice mail	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+community	Shows how contact about the social activity originated, such as from Twitter or Facebook. This field is read-only.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+community_display		projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+traversedPath	For internal use only.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+isMapiPrivate	For internal use only.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+exchangeWebLink	Shows the web link of Activity of type email.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+exchangeItemId	The message id of activity which is returned from Exchange Server.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+deliveryPriorityCode	Priority of delivery of the activity to the email server.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+deliveryPriorityCode_display		projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+sentOn	Date and time when the activity was sent.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+deliveryLastAttemptedOn	Date and time when the delivery of the activity was last attempted.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+senderMailboxId	Unique identifier of the mailbox associated with the sender of the email message.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+postponeActivityProcessingUntil	For internal use only.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+processId	Unique identifier of the Process.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+stageId	Unique identifier of the Stage.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+activityAdditionalParams	Additional information provided by the external application as JSON. For internal use only.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+SLAId	Choose the service level agreement (SLA) that you want to apply to the case record.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+SLAInvokedId	Last SLA that was applied to this case. This field is for internal use only.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+onHoldTime	Shows how long, in minutes, that the record was on hold.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+lastOnHoldTime	Contains the date and time stamp of the last on hold time.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+sortDate	Shows the date and time by which the activities are sorted.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+serviceId	Unique identifier of an associated service.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+from	Person who the activity is from.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+to	Person who is the receiver of the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+CC	Carbon-copy (cc) recipients of the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+BCC	Blind Carbon-copy (bcc) recipients of the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+requiredAttendees	List of required attendees for the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+optionalAttendees	List of optional attendees for the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+organizer	Person who organized the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+resources	Users or facility/equipment that are required for the activity.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+customers	Customer with which the activity is associated.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+partners	Outsource vendor with which activity is associated.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+approvalStatus	Shows the status of the approval.	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+approvalStatus_display		projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+characteristic	Skill for approval	projectserviceapprovalServiceAutomation/ProjectServiceApprovalServiceApproval
+
+
+*/
