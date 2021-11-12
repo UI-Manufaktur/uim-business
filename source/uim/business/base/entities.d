@@ -84,8 +84,7 @@ template OEntitiesRest(string entityName, string entitiesName) {
 template OEntitiesInner(string entityName, string entitiesName) {
   const char[] OEntitiesInner = `
   DBUS`~entityName~`[string] _entities;
-  this() {}
-
+  
   DBUS`~entityName~` opIndex(UUID anId) { if (anId.toString in _entities) return _entities[anId.toString]; return null; };
   DBUS`~entityName~` opIndex(string anId) { if (anId in _entities) return _entities[anId]; 
     foreach(id, entity; _entities) if (entity.name == anId) return entity;

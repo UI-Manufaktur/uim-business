@@ -3,8 +3,7 @@ module uim.business.models.attclass;
 import uim.business;
 
 @safe class DBUSAttclass : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSAttclass() { return new DBUSAttclass; }
 auto BUSAttclass(UUID newId, string newName) { return new DBUSAttclass(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSAttclasses {
 }
 
 @safe class DBUSAttclasses : IBUSAttclasses {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Attclass", "Attclasses"));
   mixin(OEntitiesRest!("Attclass", "Attclasses"));
 }

@@ -18,6 +18,7 @@ interface IBUSQuoteLineAnalyticsBreakdowns {
 }
 
 @safe class DBUSQuoteLineAnalyticsBreakdowns : IBUSQuoteLineAnalyticsBreakdowns {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("QuoteLineAnalyticsBreakdown", "quotelineanalyticsbreakdown"));
   mixin(OEntitiesRest!("QuoteLineAnalyticsBreakdown", "quotelineanalyticsbreakdown"));
 }

@@ -18,6 +18,7 @@ interface IBUSProducts {
 }
 
 @safe class DBUSProducts : IBUSProducts {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Product", "Products"));
   mixin(OEntitiesRest!("Product", "Products"));
 }

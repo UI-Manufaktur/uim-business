@@ -3,8 +3,7 @@ module uim.business.common.contact;
 import uim.business;
 
 @safe class DBUSContact : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSContact() { return new DBUSContact; }
 auto BUSContact(UUID newId, string newName) { return new DBUSContact(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSContacts {
 }
 
 @safe class DBUSContacts : IBUSContacts {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Contact", "Contacts"));
   mixin(OEntitiesRest!("Contact", "Contacts"));
 }

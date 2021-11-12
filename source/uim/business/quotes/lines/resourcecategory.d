@@ -18,6 +18,7 @@ interface IBUSQuoteLineResourceCategories {
 }
 
 @safe class DBUSQuoteLineResourceCategories : IBUSQuoteLineResourceCategories {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("QuoteLineResourceCategory", "QuoteLineResourceCategories"));
   mixin(OEntitiesRest!("QuoteLineResourceCategory", "QuoteLineResourceCategories"));
 }

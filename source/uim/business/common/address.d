@@ -3,8 +3,7 @@ module uim.business.common.address;
 import uim.business;
 
 @safe class DBUSAddress : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSAddress() { return new DBUSAddress; }
 auto BUSAddress(UUID newId, string newName) { return new DBUSAddress(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSAddresses {
 }
 
 @safe class DBUSAddresses : IBUSAddresses {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Address", "Addresses"));
   mixin(OEntitiesRest!("Address", "Addresses"));}
 /*

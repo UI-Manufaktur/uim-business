@@ -18,6 +18,7 @@ interface IBUSQuoteLineScheduleOfValues {
 }
 
 @safe class DBUSQuoteLineScheduleOfValues : IBUSQuoteLineScheduleOfValues {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("QuoteLineScheduleOfValue", "QuoteLineScheduleOfValues"));
   mixin(OEntitiesRest!("QuoteLineScheduleOfValue", "QuoteLineScheduleOfValues"));
 }

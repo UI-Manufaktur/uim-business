@@ -3,8 +3,7 @@ module uim.business.Competitory.Competitor;
 import uim.business;
 
 @safe class DBUSCompetitor : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSCompetitor() { return new DBUSCompetitor; }
 auto BUSCompetitor(UUID newId, string newName) { return new DBUSCompetitor(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSCompetitors {
 }
 
 @safe class DBUSCompetitors : IBUSCompetitors {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Competitor", "Competitors"));
   mixin(OEntitiesRest!("Competitor", "Competitors"));
 }

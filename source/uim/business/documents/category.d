@@ -3,8 +3,7 @@ module uim.business.documents.category;
 import uim.business;
 
 @safe class DBUSDocumentCategory : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSDocumentCategory() { return new DBUSDocumentCategory; }
 auto BUSDocumentCategory(UUID newId, string newName) { return new DBUSDocumentCategory(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSDocumentCategories {
 }
 
 @safe class DBUSDocumentCategories : IBUSDocumentCategories {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("DocumentCategory", "DocumentCategories"));
   mixin(OEntitiesRest!("DocumentCategory", "DocumentCategories"));
 }

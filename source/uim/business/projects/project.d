@@ -18,6 +18,7 @@ interface IBUSProjects {
 }
 
 @safe class DBUSProjects : IBUSProjects {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Project", "Projects"));
   mixin(OEntitiesRest!("Project", "Projects"));
 }

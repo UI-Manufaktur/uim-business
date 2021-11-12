@@ -18,6 +18,7 @@ interface IBUSQuoteLineInvoiceSchedules {
 }
 
 @safe class DBUSQuoteLineInvoiceSchedules : IBUSQuoteLineInvoiceSchedules {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("QuoteLineInvoiceSchedule", "QuoteLineInvoiceSchedules"));
   mixin(OEntitiesRest!("QuoteLineInvoiceSchedule", "QuoteLineInvoiceSchedules"));
 }

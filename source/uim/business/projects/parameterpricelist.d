@@ -18,6 +18,7 @@ interface IBUSProjectParameterPricelists {
 }
 
 @safe class DBUSProjectParameterPricelists : IBUSProjectParameterPricelists {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("ProjectParameterPricelist", "ProjectParameterPricelists"));
   mixin(OEntitiesRest!("ProjectParameterPricelist", "ProjectParameterPricelists"));
 }

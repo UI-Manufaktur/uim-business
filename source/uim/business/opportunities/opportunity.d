@@ -3,8 +3,7 @@ module uim.business.opportunities.opportunity;
 import uim.business;
 
 @safe class DBUSOpportunity : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 
 ///	Unique identifier of the delegate user who created the record.	
 mixin(OString!"createdOnBehalfBy"); 
@@ -17,7 +16,7 @@ mixin(OString!"importSequenceNumber");
 ///The type of owner, either User or Team.	
 mixin(OString!"ownerIdType"); 
 ///Owner Id	
-mixin(OString!"ownerId"); 
+mixin(OUuid!"ownerId"); 
 ///Unique identifier for the business unit that owns the record	
 mixin(OString!"owningBusinessUnit"); 
 ///Unique identifier of the user that owns the activity.	
@@ -29,8 +28,8 @@ mixin(OString!"timeZoneRuleVersionNumber");
 ///Time zone code that was in use when the record was created.	
 mixin(OString!"UTCConversionTimeZoneCode"); 
 ///Unique identifier of the opportunity.	
-mixin(OString!"opportunityId"); 
-auto opportunity() { if (_store) return _store.opportunities(_opportunityId); return null; }
+mixin(OUuid!"opportunityId"); 
+auto opportunity() { if (_store) return _store.opportunities[_opportunityId]; return null; }
 
 ///The primary email address for the entity.	
 mixin(OString!"emailAddress"); 
@@ -68,7 +67,9 @@ mixin(OString!"currentSituation");
 ///The type of customer, either Account or Contact.	
 mixin(OString!"customerIdType"); 
 ///The customer account or contact to provide a quick link to additional customer details, such as account information, activities, and opportunities.	
-mixin(OString!"customerId"); 
+mixin(OUuid!"customerId"); 
+auto customer() { if (_store) return _store.customers[_customerId]; return null; }
+
 ///Type some notes about the customer's requirements, to help the sales team identify products and services that could meet their requirements.	
 mixin(OString!"customerNeed"); 
 ///Type notes about the customer's pain points to help the sales team identify products and services that could address these pain points.	
@@ -235,7 +236,7 @@ mixin(OString!"orderType_display"); ///
 auto BUSOpportunity() { return new DBUSOpportunity; }
 auto BUSOpportunity(UUID newId, string newName) { return new DBUSOpportunity(newId, newName); }
 unittest {
-  // writeln();
+    writeln(BUSOpportunity(randomUUID, "test").toJSON);
 }
 
 @path(restPath)
@@ -244,6 +245,7 @@ interface IBUSOpportunities {
 }
 
 @safe class DBUSOpportunities : IBUSOpportunities {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Opportunity", "Opportunities"));
   mixin(OEntitiesRest!("Opportunity", "Opportunities"));
 }

@@ -3,8 +3,7 @@ module uim.business.folders.folder;
 import uim.business;
 
 @safe class DBUSFolder : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSFolder() { return new DBUSFolder; }
 auto BUSFolder(UUID newId, string newName) { return new DBUSFolder(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSFolders {
 }
 
 @safe class DBUSFolders : IBUSFolders {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Folder", "Folders"));
   mixin(OEntitiesRest!("Folder", "Folders"));
 }

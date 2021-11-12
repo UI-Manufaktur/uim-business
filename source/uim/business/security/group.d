@@ -3,8 +3,7 @@ module uim.business.security.group;
 import uim.business;
 
 @safe class DBUSGroup : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSGroup() { return new DBUSGroup; }
 auto BUSGroup(UUID newId, string newName) { return new DBUSGroup(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSGroups {
 }
 
 @safe class DBUSGroups : IBUSGroups {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Group", "Groups"));
   mixin(OEntitiesRest!("Group", "Groups"));
 }

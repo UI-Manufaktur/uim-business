@@ -3,8 +3,7 @@ module uim.business.common.country;
 import uim.business;
 
 @safe class DBUSCountry : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+   mixin(EntityThis!());
 }
 auto BUSCountry() { return new DBUSCountry; }
 auto BUSCountry(UUID newId, string newName) { return new DBUSCountry(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSCountries {
 }
 
 @safe class DBUSCountries : IBUSCountries {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Country", "Countries"));
   mixin(OEntitiesRest!("Country", "Countries"));
 }

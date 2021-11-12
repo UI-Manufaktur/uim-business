@@ -3,8 +3,7 @@ module uim.business.quotes.pricelist;
 import uim.business;
 
 @safe class DBUSQuotePricelist : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+    mixin(EntityThis!());
 }
 auto BUSQuotePricelist() { return new DBUSQuotePricelist; }
 auto BUSQuotePricelist(UUID newId, string newName) { return new DBUSQuotePricelist(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSQuotePricelists {
 }
 
 @safe class DBUSQuotePricelists : IBUSQuotePricelists {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("QuotePricelist", "QuotePricelists"));
   mixin(OEntitiesRest!("QuotePricelist", "QuotePricelists"));
 }

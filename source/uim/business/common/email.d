@@ -3,8 +3,7 @@ module uim.business.common.email;
 import uim.business;
 
 @safe class DBUSEmail : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSEmail() { return new DBUSEmail; }
 auto BUSEmail(UUID newId, string newName) { return new DBUSEmail(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSEmails {
 }
 
 @safe class DBUSEmails : IBUSEmails {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Email", "Emails"));
   mixin(OEntitiesRest!("Email", "Emails"));
 }

@@ -3,8 +3,7 @@ module uim.business.invoices.linetransaction;
 import uim.business;
 
 @safe class DBUSInvoiceLineTransaction : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSInvoiceLineTransaction() { return new DBUSInvoiceLineTransaction; }
 auto BUSInvoiceLineTransaction(UUID newId, string newName) { return new DBUSInvoiceLineTransaction(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSInvoiceLineTransactions {
 }
 
 @safe class DBUSInvoiceLineTransactions : IBUSInvoiceLineTransactions {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("InvoiceLineTransaction", "InvoiceLineTransactions"));
   mixin(OEntitiesRest!("InvoiceLineTransaction", "InvoiceLineTransactions"));
 }

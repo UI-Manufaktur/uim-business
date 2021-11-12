@@ -3,8 +3,7 @@ module uim.business.companies.company;
 import uim.business;
 
 @safe class DBUSCompany : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSCompany() { return new DBUSCompany; }
 auto BUSCompany(UUID newId, string newName) { return new DBUSCompany(newId, newName); }
@@ -19,6 +18,7 @@ interface IBUSCompanies {
 }
 
 @safe class DBUSCompanies : IBUSCompanies {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Company", "Companies"));
   mixin(OEntitiesRest!("Company", "Companies"));
 }

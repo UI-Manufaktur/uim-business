@@ -3,8 +3,7 @@ module uim.business.common.currency;
 import uim.business;
 
 @safe class DBUSCurrency : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSCurrency() { return new DBUSCurrency; }
 auto BUSCurrency(UUID newId, string newName) { return new DBUSCurrency(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSCurrencies {
 }
 
 @safe class DBUSCurrencies : IBUSCurrencies {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Currency", "Currencies"));
   mixin(OEntitiesRest!("Currency", "Currencies"));
 }

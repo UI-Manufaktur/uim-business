@@ -3,8 +3,7 @@ module uim.business.invoices.frequencydetail;
 import uim.business;
 
 @safe class DBUSInvoiceFrequencyDetail : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSInvoiceFrequencyDetail() { return new DBUSInvoiceFrequencyDetail; }
 auto BUSInvoiceFrequencyDetail(UUID newId, string newName) { return new DBUSInvoiceFrequencyDetail(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSInvoiceFrequencyDetails {
 }
 
 @safe class DBUSInvoiceFrequencyDetails : IBUSInvoiceFrequencyDetails {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("InvoiceFrequencyDetail", "InvoiceFrequencyDetails"));
   mixin(OEntitiesRest!("InvoiceFrequencyDetail", "InvoiceFrequencyDetails"));
 }

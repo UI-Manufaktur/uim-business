@@ -3,8 +3,7 @@ module uim.business.quotes.product;
 import uim.business;
 
 @safe class DBUSQuoteProduct : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+    mixin(EntityThis!());
 }
 auto BUSQuoteProduct() { return new DBUSQuoteProduct; }
 auto BUSQuoteProduct(UUID newId, string newName) { return new DBUSQuoteProduct(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSQuoteProducts {
 }
 
 @safe class DBUSQuoteProducts : IBUSQuoteProducts {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("QuoteProduct", "QuoteProducts"));
   mixin(OEntitiesRest!("QuoteProduct", "QuoteProducts"));
 }

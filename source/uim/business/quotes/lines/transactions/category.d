@@ -18,6 +18,7 @@ interface IBUSQuoteLineTransactionCategories {
 }
 
 @safe class DBUSQuoteLineTransactionCategories : IBUSQuoteLineTransactionCategories {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("QuoteLineTransactionCategory", "QuoteLineTransactionCategories"));
   mixin(OEntitiesRest!("QuoteLineTransactionCategory", "QuoteLineTransactionCategories"));
 }

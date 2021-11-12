@@ -3,8 +3,7 @@ module uim.business.customers.customer;
 import uim.business;
 
 @safe class DBUSCustomer : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSCustomer() { return new DBUSCustomer; }
 auto BUSCustomer(UUID newId, string newName) { return new DBUSCustomer(newId, newName); }
@@ -19,6 +18,7 @@ interface IBUSCustomers {
 }
 
 @safe class DBUSCustomers : IBUSCustomers {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Customer", "Customers"));
   mixin(OEntitiesRest!("Customer", "Customers"));
 }

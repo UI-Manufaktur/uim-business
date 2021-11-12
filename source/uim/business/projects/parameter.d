@@ -18,6 +18,7 @@ interface IBUSProjectParameters {
 }
 
 @safe class DBUSProjectParameters : IBUSProjectParameters {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("ProjectParameter", "ProjectParameters"));
   mixin(OEntitiesRest!("ProjectParameter", "ProjectParameters"));
 }

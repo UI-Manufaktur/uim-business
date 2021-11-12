@@ -4,8 +4,9 @@ import uim.business;
 
 @safe class DBUSObject {
   this() {}
-  this(UUID newId, string newName) { this(); id = newId; name = newName; }
-  this(DBUSStore newStore, UUID newId, string newName) { this(); _store = newStore; id = newId; name = newName; }
+  this(UUID newId, string newName) { this().id(newId).name(newName); }
+  this(DBUSStore newStore) { this(); _store = newStore; }
+  this(DBUSStore newStore, UUID newId, string newName) { this(newStore).id(newId).name(newName); }
 
   DBUSStore _store;
 
@@ -46,6 +47,12 @@ import uim.business;
   /// additional version info
   mixin(OString!"versionNote");
 
+  override string toString() {
+    return this.toJSON().toString;
+  }
+  Json toJSON() {
+    return serializeToJson(this);
+  }
 }
 auto BUSObject() { return new DBUSObject; }
 auto BUSObject(UUID newId, string newName) { return new DBUSObject(newId, newName); }
@@ -58,11 +65,10 @@ unittest {
 interface IBUSObjects {
   mixin(IEIEntitiesRest!("Object", "Objects"));
 }
-@safe class DBUSObjects : IBUSObjects{
-  this() {
-    _entities ~= new DBUSObject(randomUUID, "hi");
-    _entities ~= new DBUSObject(randomUUID, "world");
-  }
+@safe class DBUSObjects : IBUSObjects {
+  this() { }
+  this(DBUSStore newStore) { this(); _store = newStore; }
+  DBUSStore _store;
 
   DBUSObject[] _entities;
 
@@ -88,10 +94,18 @@ interface IBUSObjects {
   }
 
 	DBUSObject create() {
+
     return null;
   }
 
 	DBUSObject update(DBUSObject entity) {
    return entity; 
+  }
+
+  override string toString() {
+    return this.toJSON().toString;
+  }
+  Json toJSON() {
+    return serializeToJson(this);
   }
 }

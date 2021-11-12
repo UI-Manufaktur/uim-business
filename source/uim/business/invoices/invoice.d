@@ -3,9 +3,7 @@ module uim.business.invoices.invoice;
 import uim.business;
 
 @safe class DBUSInvoice : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
-  this(DBUSStore newStore, UUID newId, string newName) { super(newStore, newId, newName); }
+  mixin(EntityThis!());
   
   /// The primary email address for the entity.
   mixin(OString!"emailAddress");	
@@ -85,6 +83,7 @@ interface IBUSInvoices {
 }
 
 @safe class DBUSInvoices : IBUSInvoices {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Invoice", "Invoices"));
   mixin(OEntitiesRest!("Invoice", "Invoices"));
 }

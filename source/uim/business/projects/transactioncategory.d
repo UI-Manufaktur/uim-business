@@ -18,6 +18,7 @@ interface IBUSProjectTransactioncategories {
 }
 
 @safe class DBUSProjectTransactioncategories : IBUSProjectTransactioncategories {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("ProjectTransactionCategory", "ProjectTransactioncategories"));
   mixin(OEntitiesRest!("ProjectTransactionCategory", "ProjectTransactioncategories"));
 }

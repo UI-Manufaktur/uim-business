@@ -3,8 +3,7 @@ module uim.business.documents.document;
 import uim.business;
 
 @safe class DBUSDocument : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSDocument() { return new DBUSDocument; }
 auto BUSDocument(UUID newId, string newName) { return new DBUSDocument(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSDocuments {
 }
 
 @safe class DBUSDocuments : IBUSDocuments {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Document", "Documents"));
   mixin(OEntitiesRest!("Document", "Documents"));
 }

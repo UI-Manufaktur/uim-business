@@ -3,8 +3,7 @@ module uim.business.models.attribute;
 import uim.business;
 
 @safe class DBUSAttribute : DBUSObject {
-  this() { super(); }
-  this(UUID newId, string newName) { super(newId, newName); }
+  mixin(EntityThis!());
 }
 auto BUSAttribute() { return new DBUSAttribute; }
 auto BUSAttribute(UUID newId, string newName) { return new DBUSAttribute(newId, newName); }
@@ -18,6 +17,7 @@ interface IBUSAttributes {
 }
 
 @safe class DBUSAttributes : IBUSAttributes {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Attribute", "Attributes"));
   mixin(OEntitiesRest!("Attribute", "Attributes"));
 }

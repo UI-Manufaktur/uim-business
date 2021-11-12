@@ -9,7 +9,6 @@ import uim.business;
 auto BUSService() { return new DBUSService; }
 auto BUSService(UUID newId, string newName) { return new DBUSService(newId, newName); }
 unittest {
-  // writeln();
 }
 
 
@@ -19,6 +18,7 @@ interface IBUSServices {
 }
 
 @safe class DBUSServices : IBUSServices {
+  mixin(EntitiesThis!());
   mixin(OEntitiesInner!("Service", "Services"));
   mixin(OEntitiesRest!("Service", "Services"));
 }
