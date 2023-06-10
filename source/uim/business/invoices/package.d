@@ -1,9 +1,11 @@
 module uim.business.invoices;
 
-public import uim.business.invoices.frequency;
-public import uim.business.invoices.frequencydetail;
-public import uim.business.invoices.invoice;
-public import uim.business.invoices.linetransaction;
+public {
+  import uim.business.invoices.frequency;
+  import uim.business.invoices.frequencydetail;
+  import uim.business.invoices.invoice;
+  import uim.business.invoices.linetransaction;
+}
 
 /*
 
