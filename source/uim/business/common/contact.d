@@ -244,7 +244,7 @@ interface IBUSContacts {
   DBUSContact[] versions(string _id) { 
     DBUSContact[] results;
   
-    foreach(entity; _entities) results ~= entity;
+    _entities.each!(e => results ~= e);
 
     return results;
   }

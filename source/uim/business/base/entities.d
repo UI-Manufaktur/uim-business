@@ -61,7 +61,7 @@ template OEntitiesRest(string entityName, string entitiesName) {
 
   bool exists(string _id) {
     foreach(id, entity; _entities) {
-      if (entity.id == UUID(_id)) return true;
+      if (entity.id == UUID(_id)) { return true; }
     } 
     return false;
   }
